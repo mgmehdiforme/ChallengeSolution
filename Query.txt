@@ -1,0 +1,8 @@
+SELECT i.NAME AS Instrument_Name, t.Id AS Trade_Id, t.DateEn AS Trade_Date
+FROM Instrument i
+JOIN Trade t ON i.ID = t.InstrumentId
+WHERE t.DateEn = (
+  SELECT MAX (DateEn)
+  FROM Trade
+  WHERE InstrumentId = i.ID
+);
